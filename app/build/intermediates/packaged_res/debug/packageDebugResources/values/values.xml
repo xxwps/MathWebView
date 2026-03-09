@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#FFF5F5F5</color>
+    <color name="black">#FF000000</color>
+    <color name="card_background">@color/surface</color>
+    <color name="divider">#FFE0E0E0</color>
+    <color name="formula_card_background">#FFF8F9FA</color>
+    <color name="gradient_end">#FF764BA2</color>
+    <color name="gradient_start">#FF667EEA</color>
+    <color name="latex_text">#FF333333</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="primary">#FF667EEA</color>
+    <color name="primary_variant">#FF764BA2</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="tab_background">@color/surface</color>
+    <color name="text_disabled">#FF999999</color>
+    <color name="text_hint">#FF888888</color>
+    <color name="text_primary">#FF333333</color>
+    <color name="text_secondary">#FF666666</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="corner_radius_lg">16dp</dimen>
+    <dimen name="corner_radius_md">12dp</dimen>
+    <dimen name="corner_radius_sm">8dp</dimen>
+    <dimen name="corner_radius_xl">24dp</dimen>
+    <dimen name="spacing_lg">16dp</dimen>
+    <dimen name="spacing_md">12dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_xl">20dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_xxl">24dp</dimen>
+    <dimen name="text_size_lg">18sp</dimen>
+    <dimen name="text_size_md">16sp</dimen>
+    <dimen name="text_size_sm">14sp</dimen>
+    <dimen name="text_size_title">24sp</dimen>
+    <dimen name="text_size_xl">20sp</dimen>
+    <dimen name="text_size_xs">12sp</dimen>
+    <string name="app_name">数学公式展示</string>
+    <string name="error_latex_init">LaTeX 库初始化失败</string>
+    <string name="footer_android_math">使用 AndroidMath 库渲染 LaTeX → Bitmap</string>
+    <string name="footer_compose_latex">使用 io.github.huarangmeng:latex-renderer</string>
+    <string name="formula_bayes">贝叶斯定理</string>
+    <string name="formula_derivative">导数定义</string>
+    <string name="formula_determinant">行列式</string>
+    <string name="formula_euler">欧拉恒等式</string>
+    <string name="formula_integral">定积分</string>
+    <string name="formula_mass_energy">质能方程</string>
+    <string name="formula_matrix">矩阵乘法</string>
+    <string name="formula_normal_dist">正态分布</string>
+    <string name="formula_pythagorean">勾股定理</string>
+    <string name="formula_quadratic">二次方程求根公式</string>
+    <string name="formula_square">完全平方公式</string>
+    <string name="formula_taylor">泰勒展开</string>
+    <string name="mode_android_math">当前模式: AndroidMath 原生渲染</string>
+    <string name="mode_android_math_info">优点: 纯 Kotlin 实现，无需网络/WebView，轻量级\n缺点: LaTeX 语法支持有限（基础数学公式）</string>
+    <string name="mode_compose">当前模式: Compose LaTeX Renderer</string>
+    <string name="mode_compose_info">优点: Compose 跨平台，支持 372+ LaTeX 特性，自动换行\n缺点: 需要 Compose 依赖，APK 体积略大</string>
+    <string name="mode_webview">当前模式: WebView + MathJax</string>
+    <string name="mode_webview_info">优点: 支持完整 LaTeX 语法，渲染质量高，跨平台一致\n缺点: 需要网络加载库，首次渲染较慢，内存占用较高</string>
+    <string name="section_algebra">一、基础代数</string>
+    <string name="section_calculus">二、微积分</string>
+    <string name="section_famous">五、著名公式</string>
+    <string name="section_linear_algebra">三、线性代数</string>
+    <string name="section_statistics">四、概率统计</string>
+    <string name="tab_android_math">AndroidMath</string>
+    <string name="tab_compose">Compose</string>
+    <string name="tab_mathjax">MathJax</string>
+    <string name="title_android_math">AndroidMath 原生渲染</string>
+    <string name="title_compose_latex">Compose LaTeX Renderer</string>
+    <style name="Theme.MathWebView" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="android:colorBackground">@color/background</item>
+        
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+        
+        <item name="android:navigationBarColor">@color/surface</item>
+    </style>
+</resources>

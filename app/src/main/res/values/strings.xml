@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">数学公式展示</string>
+    
+    <!-- Tab 标签 -->
+    <string name="tab_mathjax">MathJax</string>
+    <string name="tab_android_math">AndroidMath</string>
+    <string name="tab_compose">Compose</string>
+    
+    <!-- 渲染模式标题 -->
+    <string name="mode_webview">当前模式: WebView + MathJax</string>
+    <string name="mode_android_math">当前模式: AndroidMath 原生渲染</string>
+    <string name="mode_compose">当前模式: Compose LaTeX Renderer</string>
+    
+    <!-- 渲染模式描述 -->
+    <string name="mode_webview_info">优点: 支持完整 LaTeX 语法，渲染质量高，跨平台一致\n缺点: 需要网络加载库，首次渲染较慢，内存占用较高</string>
+    <string name="mode_android_math_info">优点: 纯 Kotlin 实现，无需网络/WebView，轻量级\n缺点: LaTeX 语法支持有限（基础数学公式）</string>
+    <string name="mode_compose_info">优点: Compose 跨平台，支持 372+ LaTeX 特性，自动换行\n缺点: 需要 Compose 依赖，APK 体积略大</string>
+    
+    <!-- 公式分类 -->
+    <string name="section_algebra">一、基础代数</string>
+    <string name="section_calculus">二、微积分</string>
+    <string name="section_linear_algebra">三、线性代数</string>
+    <string name="section_statistics">四、概率统计</string>
+    <string name="section_famous">五、著名公式</string>
+    
+    <!-- 公式标题 -->
+    <string name="formula_quadratic">二次方程求根公式</string>
+    <string name="formula_square">完全平方公式</string>
+    <string name="formula_derivative">导数定义</string>
+    <string name="formula_integral">定积分</string>
+    <string name="formula_taylor">泰勒展开</string>
+    <string name="formula_matrix">矩阵乘法</string>
+    <string name="formula_determinant">行列式</string>
+    <string name="formula_normal_dist">正态分布</string>
+    <string name="formula_bayes">贝叶斯定理</string>
+    <string name="formula_euler">欧拉恒等式</string>
+    <string name="formula_pythagorean">勾股定理</string>
+    <string name="formula_mass_energy">质能方程</string>
+    
+    <!-- 页面标题 -->
+    <string name="title_android_math">AndroidMath 原生渲染</string>
+    <string name="title_compose_latex">Compose LaTeX Renderer</string>
+    
+    <!-- 页脚 -->
+    <string name="footer_android_math">使用 AndroidMath 库渲染 LaTeX → Bitmap</string>
+    <string name="footer_compose_latex">使用 io.github.huarangmeng:latex-renderer</string>
+    
+    <!-- 错误信息 -->
+    <string name="error_latex_init">LaTeX 库初始化失败</string>
+</resources>

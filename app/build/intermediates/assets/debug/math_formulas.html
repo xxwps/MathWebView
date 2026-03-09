@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学公式展示</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            },
+            startup: {
+                ready: function() {
+                    MathJax.startup.defaultReady();
+                    console.log('MathJax is ready!');
+                }
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            padding: 20px;
+            max-width: 100%;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .formula-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .formula-card h3 {
+            color: #444;
+            font-size: 1em;
+            margin: 0 0 12px 0;
+        }
+        
+        .formula {
+            text-align: center;
+            font-size: 1.1em;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        
+        p {
+            color: #555;
+            margin: 12px 0;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 数学公式展示</h1>
+        
+        <h2>一、基础代数</h2>
+        
+        <div class="formula-card">
+            <h3>二次方程求根公式</h3>
+            <div class="formula">
+                \[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
+            </div>
+            <p>对于方程 \(ax^2 + bx + c = 0\)，这个公式给出了所有解。</p>
+        </div>
+        
+        <div class="formula-card">
+            <h3>完全平方公式</h3>
+            <div class="formula">
+                \[ (a + b)^2 = a^2 + 2ab + b^2 \]
+                \[ (a - b)^2 = a^2 - 2ab + b^2 \]
+            </div>
+        </div>
+        
+        <h2>二、微积分</h2>
+        
+        <div class="formula-card">
+            <h3>导数定义</h3>
+            <div class="formula">
+                \[ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \]
+            </div>
+        </div>
+        
+        <div class="formula-card">
+            <h3>定积分</h3>
+            <div class="formula">
+                \[ \int_a^b f(x) \, dx = F(b) - F(a) \]
+            </div>
+            <p>其中 \(F(x)\) 是 \(f(x)\) 的原函数。</p>
+        </div>
+        
+        <div class="formula-card">
+            <h3>泰勒展开</h3>
+            <div class="formula">
+                \[ e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \]
+            </div>
+        </div>
+        
+        <h2>三、线性代数</h2>
+        
+        <div class="formula-card">
+            <h3>矩阵乘法</h3>
+            <div class="formula">
+                \[ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} e & f \\ g & h \end{pmatrix} = \begin{pmatrix} ae+bg & af+bh \\ ce+dg & cf+dh \end{pmatrix} \]
+            </div>
+        </div>
+        
+        <div class="formula-card">
+            <h3>行列式</h3>
+            <div class="formula">
+                \[ \det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc \]
+            </div>
+        </div>
+        
+        <h2>四、概率统计</h2>
+        
+        <div class="formula-card">
+            <h3>正态分布</h3>
+            <div class="formula">
+                \[ f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]
+            </div>
+            <p>其中 \(\mu\) 是均值，\(\sigma\) 是标准差。</p>
+        </div>
+        
+        <div class="formula-card">
+            <h3>贝叶斯定理</h3>
+            <div class="formula">
+                \[ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} \]
+            </div>
+        </div>
+        
+        <h2>五、著名公式</h2>
+        
+        <div class="formula-card">
+            <h3>欧拉恒等式</h3>
+            <div class="formula">
+                \[ e^{i\pi} + 1 = 0 \]
+            </div>
+            <p>被誉为<span class="highlight">最美的数学公式</span>，它将五个最重要的数学常数联系在一起。</p>
+        </div>
+        
+        <div class="formula-card">
+            <h3>勾股定理</h3>
+            <div class="formula">
+                \[ a^2 + b^2 = c^2 \]
+            </div>
+        </div>
+        
+        <div class="formula-card">
+            <h3>质能方程</h3>
+            <div class="formula">
+                \[ E = mc^2 \]
+            </div>
+            <p>爱因斯坦的著名公式，揭示了质量与能量的等价关系。</p>
+        </div>
+        
+        <div class="footer">
+            使用 MathJax 渲染数学公式
+        </div>
+    </div>
+</body>
+</html>

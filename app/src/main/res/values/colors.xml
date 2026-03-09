@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 基础颜色 -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- 应用主题色 -->
+    <color name="primary">#FF667EEA</color>
+    <color name="primary_variant">#FF764BA2</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    
+    <!-- 渐变色 -->
+    <color name="gradient_start">#FF667EEA</color>
+    <color name="gradient_end">#FF764BA2</color>
+    
+    <!-- 背景色 -->
+    <color name="background">#FFF5F5F5</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="tab_background">@color/surface</color>
+    <color name="card_background">@color/surface</color>
+    <color name="formula_card_background">#FFF8F9FA</color>
+    
+    <!-- 文字颜色 -->
+    <color name="text_primary">#FF333333</color>
+    <color name="text_secondary">#FF666666</color>
+    <color name="text_hint">#FF888888</color>
+    <color name="text_disabled">#FF999999</color>
+    
+    <!-- LaTeX 公式颜色 -->
+    <color name="latex_text">#FF333333</color>
+    
+    <!-- 分割线颜色 -->
+    <color name="divider">#FFE0E0E0</color>
+</resources>

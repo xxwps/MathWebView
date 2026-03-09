@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp"
+    android:height="72dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    
+    <!-- Background -->
+    <path
+        android:fillColor="#667eea"
+        android:pathData="M0,8 C0,3.58 3.58,0 8,0 L40,0 C44.42,0 48,3.58 48,8 L48,40 C48,44.42 44.42,48 40,48 L8,48 C3.58,48 0,44.42 0,40 Z"/>
+    
+    <!-- Diagonal accent -->
+    <path
+        android:fillColor="#764ba2"
+        android:fillAlpha="0.3"
+        android:pathData="M0,24 L24,0 L48,0 L48,24 L24,48 L0,48 Z"/>
+    
+    <!-- White circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,10 C31.73,10 38,16.27 38,24 C38,31.73 31.73,38 24,38 C16.27,38 10,31.73 10,24 C10,16.27 16.27,10 24,10 Z"/>
+    
+    <!-- Integral symbol -->
+    <path
+        android:fillColor="#667eea"
+        android:pathData="M26,16 C27,16 28,16.5 28,17.5 L28,18.5 C28,19 27.5,19.5 27,19.5 C26.5,19.5 26,19 26,18.5 L26,18 C26,17.75 25.75,17.5 25.5,17.5 L25,17.5 C24.5,17.5 24,18 24,18.5 L24,29.5 C24,30 24.5,30.5 25,30.5 L25.5,30.5 C25.75,30.5 26,30.25 26,30 L26,29.5 C26,29 26.5,28.5 27,28.5 C27.5,28.5 28,29 28,29.5 L28,30.5 C28,31.5 27,32 26,32 L25,32 C23,32 22,31 22,29.5 L22,18.5 C22,17 23,16 25,16 Z"/>
+    
+    <!-- Plus sign -->
+    <path
+        android:fillColor="#764ba2"
+        android:pathData="M17,23 L17,21 L19,21 L19,23 L21,23 L21,25 L19,25 L19,27 L17,27 L17,25 L15,25 L15,23 Z"/>
+    
+    <!-- x text -->
+    <path
+        android:fillColor="#764ba2"
+        android:pathData="M29,22 L31,25 L33,22 L35,22 L32,26 L35,30 L33,30 L31,27 L29,30 L27,30 L30,26 L27,22 Z"/>
+</vector>
