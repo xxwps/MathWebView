@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.mathwebview.app-mergeDebugResources-51:/values-v28/values-v28.xml",
+            "outputFile": "com.example.mathwebview.app-mergeDebugResources-33:/values-v28/values-v28.xml",
             "map": [
                 {
                     "source": "/Users/xinxu/.gradle/caches/8.9/transforms/5b5ee613fb59ff2125804f24788d2ec8/transformed/material-1.11.0/res/values-v28/values-v28.xml",

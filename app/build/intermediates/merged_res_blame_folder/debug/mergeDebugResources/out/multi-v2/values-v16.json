@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.mathwebview.app-mergeDebugResources-51:/values-v16/values-v16.xml",
+            "outputFile": "com.example.mathwebview.app-mergeDebugResources-33:/values-v16/values-v16.xml",
             "map": [
                 {
                     "source": "/Users/xinxu/.gradle/caches/8.9/transforms/e2c6a303181568f43615b38a2b13c302/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
@@ -12,6 +12,24 @@
                         "endLines": "5",
                         "endColumns": "12",
                         "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "/Users/xinxu/.gradle/caches/8.9/transforms/428675a45145de9bd25ea1a84b66d348/transformed/core-1.12.0/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
                     }
                 }
             ]

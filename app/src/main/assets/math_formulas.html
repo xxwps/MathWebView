@@ -6,19 +6,9 @@
     <title>数学公式展示</title>
     <script>
         MathJax = {
-            tex: {
-                inlineMath: [['\\(', '\\)']],
-                displayMath: [['\\[', '\\]']]
-            },
-            svg: {
-                fontCache: 'global'
-            },
-            startup: {
-                ready: function() {
-                    MathJax.startup.defaultReady();
-                    console.log('MathJax is ready!');
-                }
-            }
+            tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+            svg: { fontCache: 'none' },
+            startup: { ready: () => { MathJax.startup.defaultReady(); window.mathJaxReady = true; } }
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
@@ -26,58 +16,38 @@
         :root {
             --primary: #667eea;
             --primary-variant: #764ba2;
-            --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --surface: #ffffff;
             --card-background: #f8f9fa;
-            --formula-background: #ffffff;
             --text-primary: #333333;
             --text-secondary: #444444;
-            --text-body: #555555;
             --text-hint: #888888;
-            --border: #eeeeee;
-            --highlight-start: #a1c4fd;
-            --highlight-end: #c2e9fb;
         }
-        
         @media (prefers-color-scheme: dark) {
             :root {
                 --primary: #8B9CFF;
                 --primary-variant: #9B7ED9;
-                --background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
                 --surface: #252542;
                 --card-background: #1E1E36;
-                --formula-background: #2A2A4A;
                 --text-primary: #ffffff;
                 --text-secondary: #E0E0E0;
-                --text-body: #B0B0B0;
                 --text-hint: #808080;
-                --border: #333333;
-                --highlight-start: #3D5A80;
-                --highlight-end: #4A6FA5;
             }
         }
-        
-        * {
-            box-sizing: border-box;
-        }
-        
+        * { box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.8;
             padding: 20px;
-            max-width: 100%;
-            margin: 0 auto;
-            background: var(--background);
+            margin: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-variant) 100%);
             min-height: 100vh;
         }
-        
         .container {
             background: var(--surface);
             border-radius: 16px;
             padding: 24px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-        
         h1 {
             color: var(--text-primary);
             text-align: center;
@@ -86,14 +56,7 @@
             padding-bottom: 16px;
             border-bottom: 3px solid var(--primary);
         }
-        
-        h2 {
-            color: var(--primary);
-            font-size: 1.3em;
-            margin-top: 24px;
-            margin-bottom: 12px;
-        }
-        
+        h2 { color: var(--primary); font-size: 1.3em; margin: 24px 0 12px; }
         .formula-card {
             background: var(--card-background);
             border-radius: 12px;
@@ -101,58 +64,60 @@
             margin: 16px 0;
             border-left: 4px solid var(--primary);
         }
-        
-        .formula-card h3 {
-            color: var(--text-secondary);
-            font-size: 1em;
-            margin: 0 0 12px 0;
-        }
-        
+        .formula-card h3 { color: var(--text-secondary); font-size: 1em; margin: 0 0 12px; }
         .formula {
             text-align: center;
-            font-size: 1.1em;
             padding: 12px;
-            background: var(--formula-background);
+            background: var(--surface);
             border-radius: 8px;
-            overflow-x: auto;
+        }
+        p { color: var(--text-secondary); margin: 12px 0; }
+        .footer { text-align: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; color: var(--text-hint); }
+        .export-section { display: flex; justify-content: center; margin-top: 24px; }
+        .export-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-variant));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .export-btn.cancel-btn { background: #888; }
+        .modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        .modal-content h3 { color: var(--text-primary); margin: 0 0 16px; text-align: center; }
+        #formulaList { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+        .formula-select-btn {
+            background: var(--card-background);
             color: var(--text-primary);
+            border: 2px solid var(--primary);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
         }
-        
-        p {
-            color: var(--text-body);
-            margin: 12px 0;
-        }
-        
-        .highlight {
-            background: linear-gradient(120deg, var(--highlight-start) 0%, var(--highlight-end) 100%);
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: var(--text-primary);
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 24px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-            color: var(--text-hint);
-            font-size: 0.9em;
-        }
-        
-        /* MathJax SVG 颜色适配 */
-        mjx-container {
-            color: var(--text-primary) !important;
-        }
-        
-        mjx-container svg {
-            color: var(--text-primary) !important;
-        }
-        
+        .formula-select-btn:hover { background: var(--primary); color: white; }
+        #previewImage { max-width: 100%; border-radius: 8px; margin-bottom: 16px; }
+        .preview-actions { display: flex; gap: 12px; justify-content: center; }
         @media (prefers-color-scheme: dark) {
-            mjx-container, mjx-container svg, mjx-container [style*="color"] {
-                color: #ffffff !important;
-                fill: #ffffff !important;
-            }
+            mjx-container, mjx-container svg { color: #ffffff !important; fill: #ffffff !important; }
         }
     </style>
 </head>
@@ -161,108 +126,275 @@
         <h1>📐 数学公式展示</h1>
         
         <h2>一、基础代数</h2>
-        
         <div class="formula-card">
             <h3>二次方程求根公式</h3>
-            <div class="formula">
-                \[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
-            </div>
-            <p>对于方程 \(ax^2 + bx + c = 0\)，这个公式给出了所有解。</p>
+            <div class="formula">\[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]</div>
         </div>
-        
         <div class="formula-card">
             <h3>完全平方公式</h3>
-            <div class="formula">
-                \[ (a + b)^2 = a^2 + 2ab + b^2 \]
-                \[ (a - b)^2 = a^2 - 2ab + b^2 \]
-            </div>
+            <div class="formula">\[ (a + b)^2 = a^2 + 2ab + b^2 \] \[ (a - b)^2 = a^2 - 2ab + b^2 \]</div>
         </div>
         
         <h2>二、微积分</h2>
-        
         <div class="formula-card">
             <h3>导数定义</h3>
-            <div class="formula">
-                \[ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \]
-            </div>
+            <div class="formula">\[ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \]</div>
         </div>
-        
         <div class="formula-card">
             <h3>定积分</h3>
-            <div class="formula">
-                \[ \int_a^b f(x) \, dx = F(b) - F(a) \]
-            </div>
-            <p>其中 \(F(x)\) 是 \(f(x)\) 的原函数。</p>
+            <div class="formula">\[ \int_a^b f(x) \, dx = F(b) - F(a) \]</div>
         </div>
-        
         <div class="formula-card">
             <h3>泰勒展开</h3>
-            <div class="formula">
-                \[ e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \]
-            </div>
+            <div class="formula">\[ e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} \]</div>
         </div>
         
         <h2>三、线性代数</h2>
-        
         <div class="formula-card">
             <h3>矩阵乘法</h3>
-            <div class="formula">
-                \[ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} e & f \\ g & h \end{pmatrix} = \begin{pmatrix} ae+bg & af+bh \\ ce+dg & cf+dh \end{pmatrix} \]
-            </div>
+            <div class="formula">\[ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} e & f \\ g & h \end{pmatrix} = \begin{pmatrix} ae+bg & af+bh \\ ce+dg & cf+dh \end{pmatrix} \]</div>
         </div>
-        
         <div class="formula-card">
             <h3>行列式</h3>
-            <div class="formula">
-                \[ \det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc \]
-            </div>
+            <div class="formula">\[ \det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc \]</div>
         </div>
         
         <h2>四、概率统计</h2>
-        
         <div class="formula-card">
             <h3>正态分布</h3>
-            <div class="formula">
-                \[ f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]
-            </div>
-            <p>其中 \(\mu\) 是均值，\(\sigma\) 是标准差。</p>
+            <div class="formula">\[ f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]</div>
         </div>
-        
         <div class="formula-card">
             <h3>贝叶斯定理</h3>
-            <div class="formula">
-                \[ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} \]
-            </div>
+            <div class="formula">\[ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} \]</div>
         </div>
         
         <h2>五、著名公式</h2>
-        
         <div class="formula-card">
             <h3>欧拉恒等式</h3>
-            <div class="formula">
-                \[ e^{i\pi} + 1 = 0 \]
-            </div>
-            <p>被誉为<span class="highlight">最美的数学公式</span>，它将五个最重要的数学常数联系在一起。</p>
+            <div class="formula">\[ e^{i\pi} + 1 = 0 \]</div>
         </div>
-        
         <div class="formula-card">
             <h3>勾股定理</h3>
-            <div class="formula">
-                \[ a^2 + b^2 = c^2 \]
-            </div>
+            <div class="formula">\[ a^2 + b^2 = c^2 \]</div>
         </div>
-        
         <div class="formula-card">
             <h3>质能方程</h3>
-            <div class="formula">
-                \[ E = mc^2 \]
-            </div>
-            <p>爱因斯坦的著名公式，揭示了质量与能量的等价关系。</p>
+            <div class="formula">\[ E = mc^2 \]</div>
         </div>
         
-        <div class="footer">
-            使用 MathJax 渲染数学公式
+        <div class="footer">使用 MathJax 渲染数学公式</div>
+        
+        <div class="export-section">
+            <button class="export-btn" onclick="showFormulaSelector()">📷 导出单个公式</button>
+            <button class="export-btn" onclick="exportAllFormulas()" style="margin-left:12px;">📦 导出所有公式</button>
+        </div>
+        
+        <div id="formulaSelector" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h3>选择要导出的公式</h3>
+                <div id="formulaList"></div>
+                <button class="export-btn cancel-btn" onclick="hideModal('formulaSelector')">取消</button>
+            </div>
+        </div>
+        
+        <div id="exportPreview" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h3>导出预览</h3>
+                <img id="previewImage" src="" alt="预览"/>
+                <div class="preview-actions">
+                    <button class="export-btn" onclick="saveToAndroid()">💾 保存到相册</button>
+                    <button class="export-btn cancel-btn" onclick="hideModal('exportPreview')">关闭</button>
+                </div>
+            </div>
         </div>
     </div>
+    
+    <script>
+        let currentImageData = null;
+        
+        const FORMULA_LIST = [
+            { title: '二次方程求根公式', latex: ['x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}'] },
+            { title: '完全平方公式', latex: ['(a + b)^2 = a^2 + 2ab + b^2', '(a - b)^2 = a^2 - 2ab + b^2'] },
+            { title: '导数定义', latex: ["f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}"] },
+            { title: '定积分', latex: ['\\int_a^b f(x) \\, dx = F(b) - F(a)'] },
+            { title: '泰勒展开', latex: ['e^x = \\sum_{n=0}^{\\infty} \\frac{x^n}{n!}'] },
+            { title: '矩阵乘法', latex: ['\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\begin{pmatrix} e & f \\\\ g & h \\end{pmatrix} = \\begin{pmatrix} ae+bg & af+bh \\\\ ce+dg & cf+dh \\end{pmatrix}'] },
+            { title: '行列式', latex: ['\\det \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc'] },
+            { title: '正态分布', latex: ['f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}'] },
+            { title: '贝叶斯定理', latex: ['P(A|B) = \\frac{P(B|A) \\cdot P(A)}{P(B)}'] },
+            { title: '欧拉恒等式', latex: ['e^{i\\pi} + 1 = 0'] },
+            { title: '勾股定理', latex: ['a^2 + b^2 = c^2'] },
+            { title: '质能方程', latex: ['E = mc^2'] }
+        ];
+        
+        async function waitForMathJax() {
+            if (window.MathJax?.startup?.promise) {
+                await MathJax.startup.promise;
+                return;
+            }
+            await new Promise(resolve => {
+                const check = () => (window.MathJax?.tex2svg) ? resolve() : setTimeout(check, 100);
+                check();
+            });
+        }
+        
+        function showFormulaSelector() {
+            const list = document.getElementById('formulaList');
+            list.innerHTML = '';
+            FORMULA_LIST.forEach((item, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'formula-select-btn';
+                btn.textContent = item.title;
+                btn.onclick = () => exportFormula(i);
+                list.appendChild(btn);
+            });
+            document.getElementById('formulaSelector').style.display = 'flex';
+        }
+        
+        function hideModal(id) {
+            document.getElementById(id).style.display = 'none';
+            if (id === 'exportPreview') currentImageData = null;
+        }
+        
+        async function renderLatexToCanvas(latex, scale = 3, padding = 8) {
+            await waitForMathJax();
+            
+            const container = MathJax.tex2svg(latex, { display: true });
+            const svg = container.querySelector('svg');
+            if (!svg) throw new Error('SVG 生成失败');
+            
+            let w = svg.getAttribute('width'), h = svg.getAttribute('height');
+            const widthPx = parseFloat(w) * (w.includes('ex') ? 8 : w.includes('em') ? 16 : 1);
+            const heightPx = parseFloat(h) * (h.includes('ex') ? 8 : h.includes('em') ? 16 : 1);
+            const finalW = widthPx, finalH = heightPx;
+            
+            svg.setAttribute('width', finalW);
+            svg.setAttribute('height', finalH);
+            svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            svg.setAttribute('fill', '#000000');
+            
+            const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+            style.textContent = '* { fill: #000000 !important; }';
+            svg.insertBefore(style, svg.firstChild);
+            
+            svg.querySelectorAll('g').forEach(g => g.setAttribute('fill', '#000000'));
+            
+            const svgString = new XMLSerializer().serializeToString(svg);
+            const dataUrl = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString)));
+            
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = (finalW + padding * 2) * scale;
+                    canvas.height = (finalH + padding * 2) * scale;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, padding * scale, padding * scale, finalW * scale, finalH * scale);
+                    resolve(canvas.toDataURL('image/png'));
+                };
+                img.onerror = () => reject(new Error('图片加载失败'));
+                img.src = dataUrl;
+            });
+        }
+        
+        async function exportFormula(index) {
+            hideModal('formulaSelector');
+            const { latex } = FORMULA_LIST[index];
+            
+            try {
+                if (latex.length === 1) {
+                    currentImageData = await renderLatexToCanvas(latex[0]);
+                } else {
+                    const images = [];
+                    let totalH = 0, maxW = 0;
+                    for (const l of latex) {
+                        const data = await renderLatexToCanvas(l, 3, 0);
+                        const img = new Image();
+                        await new Promise(r => { img.onload = r; img.src = data; });
+                        images.push(img);
+                        maxW = Math.max(maxW, img.width);
+                        totalH += img.height;
+                    }
+                    const gap = 20, padding = 24;
+                    totalH += gap * (images.length - 1);
+                    
+                    const canvas = document.createElement('canvas');
+                    canvas.width = maxW + padding * 2;
+                    canvas.height = totalH + padding * 2;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    let y = padding;
+                    images.forEach(img => {
+                        ctx.drawImage(img, (canvas.width - img.width) / 2, y);
+                        y += img.height + gap;
+                    });
+                    currentImageData = canvas.toDataURL('image/png');
+                }
+                
+                document.getElementById('previewImage').src = currentImageData;
+                document.getElementById('exportPreview').style.display = 'flex';
+            } catch (e) {
+                alert('导出失败: ' + e.message);
+            }
+        }
+        
+        async function exportAllFormulas() {
+            try {
+                const images = [];
+                let totalH = 0, maxW = 0;
+                
+                for (const item of FORMULA_LIST) {
+                    for (const l of item.latex) {
+                        const data = await renderLatexToCanvas(l, 3, 0);
+                        const img = new Image();
+                        await new Promise(r => { img.onload = r; img.src = data; });
+                        images.push(img);
+                        maxW = Math.max(maxW, img.width);
+                        totalH += img.height;
+                    }
+                }
+                
+                const gap = 30, padding = 30;
+                totalH += gap * (images.length - 1);
+                
+                const canvas = document.createElement('canvas');
+                canvas.width = maxW + padding * 2;
+                canvas.height = totalH + padding * 2;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                let y = padding;
+                images.forEach(img => {
+                    ctx.drawImage(img, (canvas.width - img.width) / 2, y);
+                    y += img.height + gap;
+                });
+                
+                currentImageData = canvas.toDataURL('image/png');
+                document.getElementById('previewImage').src = currentImageData;
+                document.getElementById('exportPreview').style.display = 'flex';
+            } catch (e) {
+                alert('导出失败: ' + e.message);
+            }
+        }
+        
+        function saveToAndroid() {
+            if (currentImageData && window.Android?.saveImage) {
+                window.Android.saveImage(currentImageData);
+                hideModal('exportPreview');
+            } else if (currentImageData) {
+                const a = document.createElement('a');
+                a.download = 'formula_' + Date.now() + '.png';
+                a.href = currentImageData;
+                a.click();
+                hideModal('exportPreview');
+            }
+        }
+    </script>
 </body>
 </html>

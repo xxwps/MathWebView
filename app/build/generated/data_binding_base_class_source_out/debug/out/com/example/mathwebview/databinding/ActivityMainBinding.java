@@ -6,73 +6,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.compose.ui.platform.ComposeView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.mathwebview.R;
-import com.example.mathwebview.ui.view.MathCanvasView;
-import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.tabs.TabLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ActivityMainBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
-
-  @NonNull
-  public final ScrollView canvasScrollView;
-
-  @NonNull
-  public final ComposeView composeView;
-
-  @NonNull
-  public final FrameLayout contentContainer;
-
-  @NonNull
-  public final MaterialCardView infoCard;
-
-  @NonNull
-  public final MathCanvasView mathCanvasView;
-
-  @NonNull
-  public final TabLayout tabLayout;
-
-  @NonNull
-  public final TextView tvRenderInfo;
-
-  @NonNull
-  public final TextView tvRenderMode;
+  private final FrameLayout rootView;
 
   @NonNull
   public final WebView webView;
 
-  private ActivityMainBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ScrollView canvasScrollView, @NonNull ComposeView composeView,
-      @NonNull FrameLayout contentContainer, @NonNull MaterialCardView infoCard,
-      @NonNull MathCanvasView mathCanvasView, @NonNull TabLayout tabLayout,
-      @NonNull TextView tvRenderInfo, @NonNull TextView tvRenderMode, @NonNull WebView webView) {
+  private ActivityMainBinding(@NonNull FrameLayout rootView, @NonNull WebView webView) {
     this.rootView = rootView;
-    this.canvasScrollView = canvasScrollView;
-    this.composeView = composeView;
-    this.contentContainer = contentContainer;
-    this.infoCard = infoCard;
-    this.mathCanvasView = mathCanvasView;
-    this.tabLayout = tabLayout;
-    this.tvRenderInfo = tvRenderInfo;
-    this.tvRenderMode = tvRenderMode;
     this.webView = webView;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -97,63 +54,13 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.canvasScrollView;
-      ScrollView canvasScrollView = ViewBindings.findChildViewById(rootView, id);
-      if (canvasScrollView == null) {
-        break missingId;
-      }
-
-      id = R.id.composeView;
-      ComposeView composeView = ViewBindings.findChildViewById(rootView, id);
-      if (composeView == null) {
-        break missingId;
-      }
-
-      id = R.id.contentContainer;
-      FrameLayout contentContainer = ViewBindings.findChildViewById(rootView, id);
-      if (contentContainer == null) {
-        break missingId;
-      }
-
-      id = R.id.infoCard;
-      MaterialCardView infoCard = ViewBindings.findChildViewById(rootView, id);
-      if (infoCard == null) {
-        break missingId;
-      }
-
-      id = R.id.mathCanvasView;
-      MathCanvasView mathCanvasView = ViewBindings.findChildViewById(rootView, id);
-      if (mathCanvasView == null) {
-        break missingId;
-      }
-
-      id = R.id.tabLayout;
-      TabLayout tabLayout = ViewBindings.findChildViewById(rootView, id);
-      if (tabLayout == null) {
-        break missingId;
-      }
-
-      id = R.id.tvRenderInfo;
-      TextView tvRenderInfo = ViewBindings.findChildViewById(rootView, id);
-      if (tvRenderInfo == null) {
-        break missingId;
-      }
-
-      id = R.id.tvRenderMode;
-      TextView tvRenderMode = ViewBindings.findChildViewById(rootView, id);
-      if (tvRenderMode == null) {
-        break missingId;
-      }
-
       id = R.id.webView;
       WebView webView = ViewBindings.findChildViewById(rootView, id);
       if (webView == null) {
         break missingId;
       }
 
-      return new ActivityMainBinding((ConstraintLayout) rootView, canvasScrollView, composeView,
-          contentContainer, infoCard, mathCanvasView, tabLayout, tvRenderInfo, tvRenderMode,
-          webView);
+      return new ActivityMainBinding((FrameLayout) rootView, webView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

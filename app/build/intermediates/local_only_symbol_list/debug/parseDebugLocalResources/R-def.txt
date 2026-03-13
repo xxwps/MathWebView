@@ -38,14 +38,6 @@ dimen text_size_xs
 drawable ic_launcher
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-id canvasScrollView
-id composeView
-id contentContainer
-id infoCard
-id mathCanvasView
-id tabLayout
-id tvRenderInfo
-id tvRenderMode
 id webView
 layout activity_main
 mipmap ic_launcher
